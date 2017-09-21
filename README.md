@@ -13,7 +13,6 @@
 * アプリケーションの作成ボタンをクリックし、フォームに必要な情報を入力し、利用規約に同意する、にチェックを入れて作成ボタンをクリックします
 * Client IDとClient Secretが発行されます
 
-
 ### アクセストークンの発行
 * 前項で発行した Client IDとアプリケーション作成時に入力した値を使い、下記のようなURLにアクセスします。
 ```
@@ -26,6 +25,14 @@ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d redirect_uri=[
 ```
 
 ※リクエストを送る際にパラメータは'Content-Type: application/x-www-form-urlencoded'である必要がある点に注意してください。
+
+### APIリクエスト
+* 前項で発行したアクセストークンを`Authorization`ヘッダにセットして以下のようなリクエストをサーバーに発行することでAPIを利用できます。
+
+```
+curl https://expense.moneyforward.com/api/external/v1/offices -H "Authorization: Bearer [ACCESS_TOKEN]"
+```
+上の例は[事業所一覧を取得するAPI](https://expense.moneyforward.com/api/index.html#!/office/find_offices)をリクエストしています。
 
 ### リフェッシュトークンを用いてアクセストークンの再発行
 * 前項で取得したリフレッシュトークンを利用して、以下のようなリクエストをサーバーに発行します。
