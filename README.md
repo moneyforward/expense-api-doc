@@ -41,5 +41,11 @@ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d grant_type=ref
 ```
 * 上記により、新しいアクセストークンとリフレッシュトークンを取得できます。
 
+### アクセストークンの無効化
+* 前項で取得したアクセストークンには有効期限が付いていますが、即時に無効化したい場合は以下のようなリクエストをサーバーに発行して、アクセストークンを無効化してください。
+```
+curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d token=[アクセストークン] -X POST https://expense.moneyforward.com/oauth/revoke
+```
+
 ## APIリファレンス
 https://expense.moneyforward.com/api/index.html
