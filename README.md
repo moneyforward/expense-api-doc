@@ -1,6 +1,6 @@
-# MFクラウド経費APIドキュメント
+# マネーフォワード クラウド経費APIドキュメント
 ## 概要
-本ドキュメントは[MFクラウド経費](https://biz.moneyforward.com/expense)のAPIについて説明しております。
+本ドキュメントは[マネーフォワード クラウド経費](https://biz.moneyforward.com/expense)のAPIについて説明しております。
 各APIのリファレンスは[こちら](https://expense.moneyforward.com/api/index.html)をご覧ください。
 ご要望や不具合はissue登録にてご連絡ください。
 
@@ -8,7 +8,7 @@
 アプリケーションの認証はOAuth2.0のAuthorization Code Grantにもとづいて行います。
 
 ### アプリケーションの登録
-* MFクラウド経費にログイン
+* マネーフォワード クラウド経費にログイン
 * ホーム下部の`For Developer`の`API連携β（開発者向け）`に進む
 * アプリケーションの作成ボタンをクリックし、フォームに必要な情報を入力し、利用規約に同意する、にチェックを入れて作成ボタンをクリックします
 * Client IDとClient Secretが発行されます。redirect_uri は https のみ許可しています。
