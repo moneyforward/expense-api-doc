@@ -34,7 +34,7 @@ curl https://expense.moneyforward.com/api/external/v1/offices -H "Authorization:
 ```
 上の例は[事業所一覧を取得するAPI](https://expense.moneyforward.com/api/index.html#!/office/find_offices)をリクエストしています。
 
-### リフェッシュトークンを用いてアクセストークンの再発行
+### リフレッシュトークンを用いてアクセストークンの再発行
 * 前項で取得したリフレッシュトークンを利用して、以下のようなリクエストをサーバーに発行します。
 ```
 curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d grant_type=refresh_token -d refresh_token=[REFRESH_TOKEN] -X POST https://expense.moneyforward.com/oauth/token
