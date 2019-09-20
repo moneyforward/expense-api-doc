@@ -8,7 +8,7 @@
 アプリケーションの認証はOAuth2.0のAuthorization Code Grantにもとづいて行います。
 
 ### アプリケーションの登録
-* マネーフォワード クラウド経費にログイン
+* [マネーフォワード クラウド経費](https://expense.moneyforward.com/session/new)にログイン
 * ホーム下部の`For Developer`の`API連携β（開発者向け）`に進む
 * アプリケーションの作成ボタンをクリックし、フォームに必要な情報を入力し、利用規約に同意する、にチェックを入れて作成ボタンをクリックします
 * Client IDとClient Secretが発行されます。redirect_uri は https のみ許可しています。
