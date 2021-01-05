@@ -4,6 +4,10 @@
 各APIのリファレンスは[こちら](https://expense.moneyforward.com/api/index.html)をご覧ください。
 ご要望や不具合はissue登録にてご連絡ください。
 
+## お知らせ
+
+- [2021/01/05](news/2021-01-05.md)
+
 ## 認証について
 アプリケーションの認証はOAuth2.0のAuthorization Code Grantにもとづいて行います。
 
