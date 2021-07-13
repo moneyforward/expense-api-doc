@@ -6,8 +6,7 @@
 
 ## お知らせ
 
-- [2021/01/05](news/2021-01-05.md)
-- [2021/04/23](news/2021-04-23.md)
+- [API 変更に関するお知らせ](/news/index.md)
 
 ## 認証について
 アプリケーションの認証はOAuth2.0のAuthorization Code Grantにもとづいて行います。
@@ -53,5 +52,5 @@ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d token=[アク�
 ```
 
 ## APIリファレンス
-マネーフォワードクラウド経費のAPIについては[こちら](https://expense.moneyforward.com/api/index.html)  
+マネーフォワードクラウド経費のAPIについては[こちら](https://expense.moneyforward.com/api/index.html)
 マネーフォワードクラウド債務支払のAPIについては[こちら](https://payable.moneyforward.com/api/index.html)
