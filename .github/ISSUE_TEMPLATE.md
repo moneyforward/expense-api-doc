@@ -4,4 +4,4 @@
 
 ### 開発通知用
 
-@shinpei-noda @moneyforward/ex-guardian
+@shinpei-noda @MurakiSari @m-shichida @nisimotoryoga 
