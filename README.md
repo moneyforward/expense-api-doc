@@ -2,7 +2,10 @@
 ## 概要
 本ドキュメントは[マネーフォワード クラウド経費](https://biz.moneyforward.com/expense)のAPI[マネーフォワード クラウド債務支払](https://payable.moneyforward.com)のAPIについて説明しております。
 各APIのリファレンスは[こちら](https://expense.moneyforward.com/api/index.html)をご覧ください。
+
 ご要望や不具合はissue登録にてご連絡ください。
+
+※issue起票後の対応にはお時間いただきますので、あらかじめご了承ください。
 
 ## お知らせ
 
