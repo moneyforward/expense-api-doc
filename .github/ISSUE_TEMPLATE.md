@@ -4,4 +4,4 @@
 
 ### 開発通知用
 
-@shinpei-noda @MurakiSari @koyo-miyamura @nishimoto-ryoga 
+@shinpei-noda @koyo-miyamura @nishimoto-ryoga 
