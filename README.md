@@ -81,7 +81,7 @@ $ curl https://expense.moneyforward.com/oauth/token/info -H "Authorization: Bear
 {"resource_owner_id":"12345","scope":["office_setting:write","user_setting:write","transaction:write","report:write","account:write","public_resource:read"],"expires_in":2775961,"application":{"uid":"[CLIENT_ID]"},"created_at":1648021265}
 ```
 
-ここで `"expires_in": 7775961` が有効期限 (単位は秒) を表し、トークンが無効になるまで残り 2,775,961 秒 (およそ 32 日) であることを表しています。
+ここで `"expires_in": 2775961` が有効期限 (単位は秒) を表し、トークンが無効になるまで残り 2,775,961 秒 (およそ 32 日) であることを表しています。
 
 アクセストークンが無効な場合、サーバーは以下のような JSON レスポンスを返します。
 
