@@ -2,12 +2,15 @@
 
 ## 概要
 
-本ドキュメントは[マネーフォワード クラウド経費](https://biz.moneyforward.com/expense)のAPI[マネーフォワード クラウド債務支払](https://payable.moneyforward.com)のAPIについて説明しております。
+本ドキュメントは[マネーフォワード クラウド経費](https://biz.moneyforward.com/expense)のAPI / [マネーフォワード クラウド債務支払](https://biz.moneyforward.com/payable)のAPIについて説明しております。
 各APIのリファレンスは[こちら](https://expense.moneyforward.com/api/index.html)をご覧ください。
 
-ご要望や不具合はissue登録にてご連絡ください。
+ご要望や不具合はメールにてご連絡ください。
+詳しいお問い合わせ方法についてはサポートサイト([クラウド経費](https://biz.moneyforward.com/support/expense/guide/support/sup01.html) / [クラウド債務支払](https://biz.moneyforward.com/support/payable/guide/support/sup01.html))をご覧ください。
 
-※ issue起票後の対応にはお時間いただきますので、あらかじめご了承ください。
+※ チャットサポートでは対応できかねますので、メールでお問い合わせいただくようお願いいたします。
+
+※ 回答にはお時間いただきますので、あらかじめご了承ください。
 
 ## お知らせ
 
@@ -92,4 +95,5 @@ $ curl https://expense.moneyforward.com/oauth/token/info -H "Authorization: Bear
 ## APIリファレンス
 
 マネーフォワードクラウド経費のAPIについては[こちら](https://expense.moneyforward.com/api/index.html)
+
 マネーフォワードクラウド債務支払のAPIについては[こちら](https://payable.moneyforward.com/api/index.html)
