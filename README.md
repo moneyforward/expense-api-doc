@@ -3,7 +3,10 @@
 ## 概要
 
 本ドキュメントは[マネーフォワード クラウド経費](https://biz.moneyforward.com/expense)のAPI / [マネーフォワード クラウド債務支払](https://biz.moneyforward.com/payable)のAPIについて説明しております。
-各APIのリファレンスは[こちら](https://expense.moneyforward.com/api/index.html)をご覧ください。
+各APIのリファレンスはこちらをご覧ください。
+
+- [クラウド経費](https://expense.moneyforward.com/api/index.html)
+- [クラウド債務支払](https://payable.moneyforward.com/api/index.html)
 
 ご要望や不具合はメールにてご連絡ください。
 詳しいお問い合わせ方法についてはサポートサイト([クラウド経費](https://biz.moneyforward.com/support/expense/guide/support/sup01.html) / [クラウド債務支払](https://biz.moneyforward.com/support/payable/guide/support/sup01.html))をご覧ください。
@@ -22,7 +25,7 @@
 
 ### アプリケーションの登録
 
-* [マネーフォワード クラウド経費](https://expense.moneyforward.com/session/new)にログイン
+* [マネーフォワード クラウド経費](https://expense.moneyforward.com/session/new) または [マネーフォワード クラウド債務支払](https://payable.moneyforward.com/session/new) にログイン
 * 個人設定＞基本設定画面の`API連携（開発者向け）`にある`API連携はこちら`をクリック
 * アプリケーションの作成ボタンをクリックし、フォームに必要な情報を入力し、利用規約に同意する、にチェックを入れて作成ボタンをクリックします
 * Client IDとClient Secretが発行されます。redirect_uri は https のみ許可しています。
@@ -30,6 +33,7 @@
 ### アクセストークンの発行
 
 * 前項で発行した Client IDとアプリケーション作成時に入力した値を使い、下記のようなURLにアクセスします。
+  * ※ 債務支払の場合はドメインを payable.moneyforward.com に読み替えてください
 
 ```
 https://expense.moneyforward.com/oauth/authorize?client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URL]&response_type=code&scope=[SCOPE]
