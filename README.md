@@ -39,11 +39,11 @@
 https://expense.moneyforward.com/oauth/authorize?client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URL]&response_type=code&scope=[SCOPE]
 ```
 
-* アプリケーションを承認すると認証コードつきURLが発行されるので、そのコードを使って以下のようなリクエストをサーバーに発行し、アクセストークン、リフレッシュトークンを取得します。入力に使う[REDIRECT_URL]はアプリケーションの作成時に入力した値を入れてください
-* 認証コードの有効期限は10分です。
+* アプリケーションを承認すると認可コードつきURLが発行されるので、そのコードを使って以下のようなリクエストをサーバーに発行し、アクセストークン、リフレッシュトークンを取得します。入力に使う[REDIRECT_URL]はアプリケーションの作成時に入力した値を入れてください
+* 認可コードの有効期限は10分です。
 
 ```
-$ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d redirect_uri=[REDIRECT_URL] -d grant_type=authorization_code -d code=[認証コード] -X POST https://expense.moneyforward.com/oauth/token
+$ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d redirect_uri=[REDIRECT_URL] -d grant_type=authorization_code -d code=[認可コード] -X POST https://expense.moneyforward.com/oauth/token
 ```
 
 ※ リクエストを送る際にパラメータは'Content-Type: application/x-www-form-urlencoded'である必要がある点に注意してください。
