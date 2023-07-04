@@ -40,6 +40,7 @@ https://expense.moneyforward.com/oauth/authorize?client_id=[CLIENT_ID]&redirect_
 ```
 
 * アプリケーションを承認すると認証コードつきURLが発行されるので、そのコードを使って以下のようなリクエストをサーバーに発行し、アクセストークン、リフレッシュトークンを取得します。入力に使う[REDIRECT_URL]はアプリケーションの作成時に入力した値を入れてください
+* 認証コードの有効期限は10分です。
 
 ```
 $ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d redirect_uri=[REDIRECT_URL] -d grant_type=authorization_code -d code=[認証コード] -X POST https://expense.moneyforward.com/oauth/token
