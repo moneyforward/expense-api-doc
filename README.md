@@ -25,10 +25,11 @@
 
 ### アプリケーションの登録
 
-* [マネーフォワード クラウド経費](https://expense.moneyforward.com/session/new) または [マネーフォワード クラウド債務支払](https://payable.moneyforward.com/session/new) にログイン
+* ご利用になるプロダクト([マネーフォワード クラウド経費](https://expense.moneyforward.com/session/new) または [マネーフォワード クラウド債務支払](https://payable.moneyforward.com/session/new)) にログイン
 * 個人設定＞基本設定画面の`API連携（開発者向け）`にある`API連携はこちら`をクリック
 * アプリケーションの作成ボタンをクリックし、フォームに必要な情報を入力し、利用規約に同意する、にチェックを入れて作成ボタンをクリックします
 * Client IDとClient Secretが発行されます。redirect_uri は https のみ許可しています。
+* クラウド経費、クラウド債務支払の両方をご利用になる場合は両方にてアプリケーションの登録をお願いします。
 
 ### アクセストークンの発行
 
@@ -51,6 +52,7 @@ $ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d redirect_uri
 ### APIリクエスト
 
 * 前項で発行したアクセストークンを`Authorization`ヘッダにセットして以下のようなリクエストをサーバーに発行することでAPIを利用できます。
+  * ※ 債務支払の場合はドメインを payable.moneyforward.com に読み替えてください
 
 ```
 $ curl https://expense.moneyforward.com/api/external/v1/offices -H "Authorization: Bearer [ACCESS_TOKEN]"
@@ -60,6 +62,7 @@ $ curl https://expense.moneyforward.com/api/external/v1/offices -H "Authorizatio
 ### リフレッシュトークンを用いてアクセストークンの再発行
 
 * 前項で取得したリフレッシュトークンを利用して、以下のようなリクエストをサーバーに発行します。
+  * ※ 債務支払の場合はドメインを payable.moneyforward.com に読み替えてください
 
 ```
 $ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d grant_type=refresh_token -d refresh_token=[REFRESH_TOKEN] -X POST https://expense.moneyforward.com/oauth/token
