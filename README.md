@@ -1,4 +1,4 @@
-# マネーフォワード クラウド経費APIドキュメント
+# マネーフォワード クラウド経費・債務支払APIドキュメント
 
 ## 概要
 
@@ -9,81 +9,125 @@
 - [クラウド債務支払](https://payable.moneyforward.com/api/index.html)
 
 ご要望や不具合はメールにてご連絡ください。
+
 詳しいお問い合わせ方法についてはサポートサイト([クラウド経費](https://biz.moneyforward.com/support/expense/guide/support/sup01.html) / [クラウド債務支払](https://biz.moneyforward.com/support/payable/guide/support/sup01.html))をご覧ください。
 
 ※ チャットサポートでは対応できかねますので、メールでお問い合わせいただくようお願いいたします。
 
 ※ 回答にはお時間いただきますので、あらかじめご了承ください。
 
-## お知らせ
+## アクセストークンの発行の流れ
 
-- [API 変更に関するお知らせ](/news/index.md)
+API実行用に用いるアクセストークンの発行はOAuth2.0のAuthorization Code Grantにもとづいて行います。
 
-## 認証について
+### 1. アプリケーションの登録
 
-アプリケーションの認証はOAuth2.0のAuthorization Code Grantにもとづいて行います。
+- ご利用になるプロダクト([マネーフォワード クラウド経費](https://expense.moneyforward.com/session/new) または [マネーフォワード クラウド債務支払](https://payable.moneyforward.com/session/new)) にログイン
+- 個人設定＞基本設定画面の`API連携（開発者向け）`にある`API連携はこちら`をクリック
+- アプリケーションの作成ボタンをクリックし、フォームに必要な情報を入力し、利用規約に同意する、にチェックを入れて作成ボタンをクリックします
+- Client IDとClient Secretが発行されます。redirect_uri は https のみ許可しています。
 
-### アプリケーションの登録
+※ クラウド経費、クラウド債務支払の両方をご利用になる場合は、それぞれでアプリケーションの登録をお願いします。クラウド経費の画面で発行したClient IDとClient Secret、またアクセストークンを債務支払のAPI実行に用いること、またその逆での動作は保証しかねます。
 
-* ご利用になるプロダクト([マネーフォワード クラウド経費](https://expense.moneyforward.com/session/new) または [マネーフォワード クラウド債務支払](https://payable.moneyforward.com/session/new)) にログイン
-* 個人設定＞基本設定画面の`API連携（開発者向け）`にある`API連携はこちら`をクリック
-* アプリケーションの作成ボタンをクリックし、フォームに必要な情報を入力し、利用規約に同意する、にチェックを入れて作成ボタンをクリックします
-* Client IDとClient Secretが発行されます。redirect_uri は https のみ許可しています。
-* クラウド経費、クラウド債務支払の両方をご利用になる場合は、それぞれでアプリケーションの登録をお願いします。
+### 2. ブラウザ上で認可を行い認可コードの発行
 
-### アクセストークンの発行
-
-* 前項で発行した Client IDとアプリケーション作成時に入力した値を使い、下記のようなURLにアクセスします。
-  * ※ 債務支払の場合はドメインを payable.moneyforward.com に読み替えてください
+- 前項で発行した Client ID とアプリケーション作成時に入力した値を使い、下記のようなURLにアクセスします。
 
 ```
 https://expense.moneyforward.com/oauth/authorize?client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URL]&response_type=code&scope=[SCOPE]
 ```
 
-* アプリケーションを承認すると認可コードつきURLが発行されるので、そのコードを使って以下のようなリクエストをサーバーに発行し、アクセストークン、リフレッシュトークンを取得します。入力に使う[REDIRECT_URL]はアプリケーションの作成時に入力した値を入れてください
-* 認可コードの有効期限は10分です。
+- ※ 債務支払の場合はドメインを `payable.moneyforward.com` に読み替えて、以下のURLにアクセスしてください。
 
 ```
-$ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d redirect_uri=[REDIRECT_URL] -d grant_type=authorization_code -d code=[認可コード] -X POST https://expense.moneyforward.com/oauth/token
+https://payable.moneyforward.com/oauth/authorize?client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URL]&response_type=code&scope=[SCOPE]
+```
+
+登録したアプリケーション詳細の以下の「認証」ボタンを押すことでもアクセスできます。
+
+![callback_url](images/callback_url.png)
+
+URL にアクセスすると以下のような画面に遷移します。記載内容を確認し、承認して問題なければ承認ボタンを押してください。
+
+![confirmation](images/confirmation.png)
+
+### 3. 認可コードからアクセストークンの発行
+
+- アプリケーションを承認すると　OAuth2 のフローに基づき認可コードつきURLが発行されるので、そのコードを使って以下のようなリクエストをサーバーに発行し、アクセストークン、リフレッシュトークンを取得します。入力に使う[REDIRECT_URL]はアプリケーションの作成時に入力した値を入れてください
+- 認可コードの有効期限は10分です。
+
+```
+curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d redirect_uri=[REDIRECT_URL] -d grant_type=authorization_code -d code=[認可コード] -X POST https://expense.moneyforward.com/oauth/token
 ```
 
 ※ リクエストを送る際にパラメータは'Content-Type: application/x-www-form-urlencoded'である必要がある点に注意してください。
 
-### APIリクエスト
-
-* 前項で発行したアクセストークンを`Authorization`ヘッダにセットして以下のようなリクエストをサーバーに発行することでAPIを利用できます。
-  * ※ 債務支払の場合はドメインを payable.moneyforward.com に読み替えてください
+- ※ 債務支払の場合はドメインを `payable.moneyforward.com` に読み替えて、以下のURLにアクセスしてください。
 
 ```
-$ curl https://expense.moneyforward.com/api/external/v1/offices -H "Authorization: Bearer [ACCESS_TOKEN]"
+curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d redirect_uri=[REDIRECT_URL] -d grant_type=authorization_code -d code=[認可コード] -X POST https://payable.moneyforward.com/oauth/token
 ```
+
+### 4. APIリクエスト
+
+- 前項で発行したアクセストークンを`Authorization`ヘッダにセットして以下のようなリクエストをサーバーに発行することでAPIを利用できます。
+
+```
+curl https://expense.moneyforward.com/api/external/v1/offices -H "Authorization: Bearer [ACCESS_TOKEN]"
+```
+
 上の例は[事業者一覧を取得するAPI](https://expense.moneyforward.com/api/index.html#!/office/find_offices)をリクエストしています。
 
-### リフレッシュトークンを用いてアクセストークンの再発行
-
-* 前項で取得したリフレッシュトークンを利用して、以下のようなリクエストをサーバーに発行します。
-  * ※ 債務支払の場合はドメインを payable.moneyforward.com に読み替えてください
+- ※ 債務支払の場合はドメインを `payable.moneyforward.com` に読み替えて、以下のURLにアクセスしてください。
 
 ```
-$ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d grant_type=refresh_token -d refresh_token=[REFRESH_TOKEN] -X POST https://expense.moneyforward.com/oauth/token
+curl https://payable.moneyforward.com/api/external/v1/offices -H "Authorization: Bearer [ACCESS_TOKEN]"
 ```
 
-* 上記により、新しいアクセストークンとリフレッシュトークンを取得できます。
+## アクセストークン / リフレッシュトークンに関する操作
+
+### リフレッシュトークンを用いたアクセストークンの再発行
+
+- 前項で取得したリフレッシュトークンを利用して、以下のようなリクエストをサーバーに発行します。
+
+```
+curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d grant_type=refresh_token -d refresh_token=[REFRESH_TOKEN] -X POST https://expense.moneyforward.com/oauth/token
+```
+
+上記により、新しいアクセストークンとリフレッシュトークンを取得できます。
+
+- ※ 債務支払の場合はドメインを `payable.moneyforward.com` に読み替えて、以下のURLにアクセスしてください。
+
+```
+curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d grant_type=refresh_token -d refresh_token=[REFRESH_TOKEN] -X POST https://payable.moneyforward.com/oauth/token
+```
 
 ### アクセストークンの無効化
 
-* 前項で取得したアクセストークンには有効期限が付いています。即時に無効化したい場合は以下のようなリクエストをサーバーに発行して、アクセストークンを無効化します。
+- 前項で取得したアクセストークンには有効期限が付いています。即時に無効化したい場合は以下のようなリクエストをサーバーに発行して、アクセストークンを無効化します。
 
 ```
-$ curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d token=[アクセストークン] -X POST https://expense.moneyforward.com/oauth/revoke
+curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d token=[アクセストークン] -X POST https://expense.moneyforward.com/oauth/revoke
+```
+
+- ※ 債務支払の場合はドメインを `payable.moneyforward.com` に読み替えて、以下のURLにアクセスしてください。
+
+```
+curl -d client_id=[CLIENT_ID] -d client_secret=[CLIENT_SECRET] -d token=[アクセストークン] -X POST https://payable.moneyforward.com/oauth/revoke
 ```
 
 ### アクセストークンの有効期限の確認
 
-* 前項で取得したアクセストークンが有効かどうか、あるいは有効な場合の有効期限を確認するには、以下のようなリクエストをサーバーに発行します。
+- 前項で取得したアクセストークンが有効かどうか、あるいは有効な場合の有効期限を確認するには、以下のようなリクエストをサーバーに発行します。
 
 ```
-$ curl https://expense.moneyforward.com/oauth/token/info -H "Authorization: Bearer [アクセストークン]"
+curl https://expense.moneyforward.com/oauth/token/info -H "Authorization: Bearer [アクセストークン]"
+```
+
+- ※ 債務支払の場合はドメインを `payable.moneyforward.com` に読み替えて、以下のURLにアクセスしてください。
+
+```
+curl https://payable.moneyforward.com/oauth/token/info -H "Authorization: Bearer [アクセストークン]"
 ```
 
 アクセストークンが有効な場合、サーバーは以下のような JSON レスポンスを返します。
