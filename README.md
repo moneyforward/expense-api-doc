@@ -33,6 +33,8 @@ API実行用に用いるアクセストークンの発行はOAuth2.0のAuthoriza
 
 - 前項で発行した Client ID とアプリケーション作成時に入力した値を使い、下記のようなURLにアクセスします。
 
+※ アクセストークンを発行したいユーザーでログインした状態でアクセスしてください。
+
 ```
 https://expense.moneyforward.com/oauth/authorize?client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URL]&response_type=code&scope=[SCOPE]
 ```
@@ -50,6 +52,8 @@ https://payable.moneyforward.com/oauth/authorize?client_id=[CLIENT_ID]&redirect_
 URL にアクセスすると以下のような画面に遷移します。記載内容を確認し、承認して問題なければ承認ボタンを押してください。
 
 ![confirmation](images/confirmation.png)
+
+※ 承認ボタンを押した Money Forward ID ユーザーの権限でアクセストークンが発行されます。
 
 ### 3. 認可コードからアクセストークンの発行
 
