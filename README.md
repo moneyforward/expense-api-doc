@@ -4,7 +4,8 @@
 
 本ドキュメントは[マネーフォワード クラウド経費](https://biz.moneyforward.com/expense)のAPI / [マネーフォワード クラウド債務支払](https://biz.moneyforward.com/payable)のAPIについて説明しております。
 各APIのリファレンスはこちらをご覧ください。
-※ クラウド債務支払については[External API with user token](https://payable.moneyforward.com/api/index.html?urls.primaryName=External%20API%20with%20user%20token)を対象としています。
+
+※ クラウド債務支払については[External API with user token](https://payable.moneyforward.com/api/index.html?urls.primaryName=External%20API%20with%20user%20token)を対象としています。</br>
 ※ クラウド債務支払の[External API with office token](https://payable.moneyforward.com/api/index.html?urls.primaryName=External%20API%20with%20office%20token)については[お知らせ](https://biz.moneyforward.com/support/payable/news/new-feature/20250415.html)をご覧ください。
 
 - [クラウド経費](https://expense.moneyforward.com/api/index.html)
