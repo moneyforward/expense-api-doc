@@ -15,9 +15,9 @@
 
 詳しいお問い合わせ方法についてはサポートサイト([クラウド経費](https://biz.moneyforward.com/support/expense/guide/support/sup01.html) / [クラウド債務支払](https://biz.moneyforward.com/support/payable/guide/support/sup01.html))をご覧ください。
 
-※ チャットサポートでは対応できかねますので、メールでお問い合わせいただくようお願いいたします。
+※ 回答にはお時間をいただきますので、あらかじめご了承ください。
 
-※ 回答にはお時間いただきますので、あらかじめご了承ください。
+※ お客様環境に関わる構築や仕様確認については回答いたしかねます。
 
 ## アクセストークンの発行の流れ
 
